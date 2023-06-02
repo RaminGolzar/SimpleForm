@@ -8,7 +8,11 @@ namespace App\Libraries\Form;
 class SimpleForm
 {
 
-    // style for input type text|email|password
+    /**
+     * style for input type text|email|password
+     *
+     * @var type
+     */
     private $inputStyle = "w3-input w3-border w3-round w3-margin-top";
 
     /**
@@ -17,22 +21,58 @@ class SimpleForm
      * @var string
      */
     public string $inputBgColor = 'white';
-    // style for input type select
-    private $dropdownStyle = 'w3-margin-top w3-select w3-round w3-border';
-    o// contain complette html form
-    private $form = '';
-    // ------------------------------------------------------------
-    // properties for form tag style
 
+    /**
+     * style for input type select
+     *
+     * @var type
+     */
+    private $dropdownStyle = 'w3-margin-top w3-select w3-round w3-border';
+
+    /**
+     * contain complette html form
+     *
+     * @var type
+     */
+    private $form = '';
+
+    /**
+     * Background color for form tag
+     *
+     * @var string
+     */
     public string $formBgColor = '';
+
+    /**
+     * Whether the form has border or not
+     *
+     * @var bool
+     */
     public bool $formBorder = false;
+
+    /**
+     * Whether the corner of the form are rounded or not
+     *
+     * @var bool
+     */
     public bool $formRound = false;
+
+    /**
+     * Whether the form has padding or not
+     *
+     * @var bool
+     */
     public bool $formPadding = true;
+
+    /**
+     * Whether the form has margin or not
+     *
+     * @var bool
+     */
     public bool $formMargin = false;
 
-    // ============================================================
-
-    /** set heading tag for form tag
+    /**
+     * set heading tag for form tag
      *
      * @param string $titr
      * @param int $level - valid value is [1-6]
@@ -53,7 +93,8 @@ class SimpleForm
         return $this;
     }
 
-    /** return row element for inputs form
+    /**
+     * return row element for inputs form
      *
      * @param string $content
      * @param bool $padding
@@ -65,7 +106,8 @@ class SimpleForm
         return "<section class='w3-margin-top w3-row'>$content</section>";
     }
 
-    /** generate input type text
+    /**
+     * generate input type text
      *
      * @param string $name - name and id attr
      * @param string $title - for label
@@ -88,7 +130,8 @@ class SimpleForm
         return $this;
     }
 
-    /** generate input type email
+    /**
+     * generate input type email
      *
      * @param string $name - name and id attr
      * @param string $title - for label
@@ -111,7 +154,8 @@ class SimpleForm
         return $this;
     }
 
-    /** generate input type password
+    /**
+     * generate input type password
      *
      * @param string $name - name and id attr
      * @param string $title - for label
@@ -134,7 +178,8 @@ class SimpleForm
         return $this;
     }
 
-    /** generate input type submit
+    /**
+     * generate input type submit
      *
      * submit param discription:
      *      1- array key is input name + space + button color that
@@ -191,7 +236,8 @@ class SimpleForm
         return $this;
     }
 
-    /** genetate link button
+    /**
+     * genetate link button
      *
      * @param string $url
      * @param string $title
@@ -204,7 +250,8 @@ class SimpleForm
         return anchor ($url , $title , "class='$class'");
     }
 
-    /** set button style, for submit method
+    /**
+     * set button style, for submit method
      *
      * @param string $align
      * @param string $submitName - because contain name & color, extract color from name
@@ -239,7 +286,8 @@ class SimpleForm
         return $buttonStyle;
     }
 
-    /** generate input type checkbox
+    /**
+     * generate input type checkbox
      *
      * @param string $name - name and id attr
      * @param string $title - for label
@@ -256,7 +304,8 @@ class SimpleForm
         return $this;
     }
 
-    /** generate input type radio
+    /**
+     * generate input type radio
      *
      * @param string $name - name and id attr
      * @param string $title - for label
@@ -273,7 +322,8 @@ class SimpleForm
         return $this;
     }
 
-    /** generate input type select (drop down)
+    /**
+     * generate input type select (drop down)
      *
      * @param string $name - name & id attr
      * @param string $title
@@ -305,7 +355,8 @@ class SimpleForm
         return $this;
     }
 
-    /** return a input hidden
+    /**
+     * return a input hidden
      *
      * @param string $name
      * @param string $value
@@ -318,8 +369,9 @@ class SimpleForm
         return $this;
     }
 
-    /** load and get complete html form result
-     * finally methid in work
+    /**
+     * This function return result along with
+     * the form tag
      *
      * @param string $action
      * @param string $method
@@ -341,7 +393,8 @@ class SimpleForm
         return $htmlForm;
     }
 
-    /** set form style, use in get_form method
+    /**
+     * set form style, use in get_form method
      *
      * @return string
      */
@@ -358,8 +411,8 @@ class SimpleForm
     }
 
     /**
-     * return inputs form and not return form tag
-     * finally methid in work
+     * This function return result without the
+     * form tag
      *
      * @return string
      */
