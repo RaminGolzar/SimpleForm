@@ -1,2 +1,3 @@
 # SimpleForm
-Making a simple html form with PHP
+
+Creating a form with pure **PHP** and styling it with **W3.CSS** framework
