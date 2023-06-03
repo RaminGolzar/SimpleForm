@@ -1,9 +1,5 @@
 <?php
-namespace App\Libraries\Form;
-
-/* this class required form helper
- *
- */
+namespace SimpleForm;
 
 class SimpleForm
 {
@@ -117,13 +113,17 @@ class SimpleForm
      */
     public function text (string $name , string $title = '' , string $value = '' , string $placeholder = ''): object {
         // set label
-        $html = ($title) ? form_label ($title , $name) : null;
+        // todo: delete belove line
+//        $html = ($title) ? form_label ($title , $name) : null;
+        $html = ($title) ? "<label for='$name'>$title</label>" : null;
 
         // set margin for input text
         $class = ($title) ? 'w3-margin-bottom' : null;
 
         // set input text
-        $html .= form_input ($name , $value , "id='$name' class='$class $this->inputStyle w3-$this->inputBgColor' placeholder='$placeholder'");
+        // todo delete the belove line
+//        $html .= form_input ($name , $value , "id='$name' class='$class $this->inputStyle w3-$this->inputBgColor' placeholder='$placeholder'");
+        $html .= "<input type='text' id='$name' name='$name' value='$value' class='$class $this->inputStyle w3-$this->inputBgColor' placeholder='$placeholder' />";
 
         $this->form .= $this->row ($html);
 
@@ -141,13 +141,17 @@ class SimpleForm
      */
     public function email (string $name , string $title = '' , string $value = '' , string $placeholder = ''): object {
         // set label
-        $html = ($title) ? form_label ($title , $name) : null;
+        // todo: delete belove line
+//        $html = ($title) ? form_label ($title , $name) : null;
+        $html = ($title) ? "<label for='$name'>$title</label>" : null;
 
         // set margin for input text
         $class = ($title) ? 'w3-margin-bottom' : null;
 
         // set input email
-        $html .= form_input ($name , $value , "id='$name' class='$class $this->inputStyle w3-$this->inputBgColor' placeholder='$placeholder'" , 'email');
+        // todo: delete belove line
+//        $html .= form_input ($name , $value , "id='$name' class='$class $this->inputStyle w3-$this->inputBgColor' placeholder='$placeholder'" , 'email');
+        $html .= "<input type='email' id='$name' name='$name' value='$value' class='$class $this->inputStyle w3-$this->inputBgColor' placeholder='$placeholder' />";
 
         $this->form .= $this->row ($html);
 
@@ -165,13 +169,17 @@ class SimpleForm
      */
     public function password (string $name , string $title = '' , string $value = '' , string $placeholder = ''): object {
         // set label
-        $html = ($title) ? form_label ($title , $name) : null;
+        // todo: delete belove line
+//        $html = ($title) ? form_label ($title , $name) : null;
+        $html = ($title) ? "<label for='$name'>$title</label>" : null;
 
         // set margin for input text
         $class = ($title) ? 'w3-margin-bottom' : null;
 
         // set input password
-        $html .= form_password ($name , $value , "id='$name' class='$class $this->inputStyle w3-$this->inputBgColor' placeholder='$placeholder'");
+//        todo: delete belove line
+//        $html .= form_password ($name , $value , "id='$name' class='$class $this->inputStyle w3-$this->inputBgColor' placeholder='$placeholder'");
+        $html .= "<input type='password' id='$name' name='$name' value='$value' class='$class $this->inputStyle w3-$this->inputBgColor' placeholder='$placeholder' />";
 
         $this->form .= $this->row ($html);
 
@@ -224,7 +232,9 @@ class SimpleForm
             if (filter_var (current ($key) , FILTER_VALIDATE_URL)) {
                 $html .= $this->link_button (current ($key) , $v , $align , end ($key));
             } else {
-                $html .= form_submit (current ($key) , $v , "id='" . current ($key) . "' class='" . $this->set_button_style ($align , $k) . " " . $class . "' $strAttr");
+//                todo: delete belove line
+//                $html .= form_submit (current ($key) , $v , "id='" . current ($key) . "' class='" . $this->set_button_style ($align , $k) . " " . $class . "' $strAttr");
+                $html .= "<input type='submit' id='" . current ($key) . "' name='" . current ($key) . "' value='$v' class='" . $this->set_button_style ($align , $k) . " " . $class . "' $strAttr'  />";
             }
         }
 
@@ -247,7 +257,9 @@ class SimpleForm
      */
     private function link_button (string $url , string $title , string $align , string $color): string {
         $class = $this->set_button_style ($align , $url . ' ' . $color);
-        return anchor ($url , $title , "class='$class'");
+        // todo: delete this line
+//        return anchor ($url , $title , "class='$class'");
+        return "<a href='$url' class='$class'>$title</a>";
     }
 
     /**
@@ -296,8 +308,16 @@ class SimpleForm
      * @return object
      */
     public function checkbox (string $name , string $title = '' , string $value = '' , bool $checked = false): object {
-        $html = form_checkbox ($name , $value , $checked , "id='$name' class='w3-check w3-margin-top'");
-        $html .= form_label ($title , $name , ['class' => 'w3-padding-small']);
+        $checked = $checked ? ' checked ' : '';
+
+//        todo: delete belove line
+//        $html = form_checkbox ($name , $value , $checked , "id='$name' class='w3-check w3-margin-top'");
+        $html = "<input type='checkbox' "
+                . $checked
+                . " id='$name' name='$name' value='$value' class='w3-check w3-margin-top' />";
+//     todo: delete belove line
+//        $html .= form_label ($title , $name , ['class' => 'w3-padding-small']);
+        $html .= "<label for='$name' class='w3-padding-small'>$title</label>";
 
         $this->form .= $this->row ($html , false , true);
 
@@ -314,8 +334,16 @@ class SimpleForm
      * @return object
      */
     public function radio (string $name , string $title = '' , string $value = '' , bool $checked = false): object {
-        $html = form_radio ($name , $value , $checked , "id='$name' class='w3-radio'");
-        $html .= form_label ($title , $name , ['class' => 'w3-padding']);
+        $checked = $checked ? (string) " checked " : '';
+//        todo: delete belowe line
+//        $html = form_radio ($name , $value , $checked , "id='$name' class='w3-radio'");
+        $html = "<input type='radio'"
+//                . ($checked) ? " checked " : ''
+                . $checked
+                . " id='$name' name='$name' value='$value' class='w3-radio' />";
+//        todo: delete belove line
+//        $html .= form_label ($title , $name , ['class' => 'w3-padding']);
+        $html .= "<label for='$name' class='w3-padding'>$title</label>";
 
         $this->form .= $this->row ($html , true , true);
 
@@ -331,24 +359,54 @@ class SimpleForm
      * @param array $selected
      * @return object
      */
-    public function dropdown (string $name , string $title = '' , array $option = [] , array $selected = []): object {
-        $html = form_label ($title , $name);
-        $html .= form_dropdown ($name , $option , $selected , "id='$name' class='$this->dropdownStyle w3-$this->inputBgColor'");
+    public function dropdown (string $name , string $title = '' , array $option = [] , string $selected = ''): object {
+//        todo: delete belove line
+//        $html = form_label ($title , $name);
+        $html = "<label for='$name'>$title</label>";
+//        todo: delete belowe code
+//        $html .= form_dropdown ($name , $option , $selected , "id='$name' class='$this->dropdownStyle w3-$this->inputBgColor'");
+        $html .= "<select id='$name' name='$name'>"
+                . $this->option_tag ($option , $selected)
+                . "</select>";
 
         $this->form .= $this->row ($html);
 
         return $this;
     }
 
+    /**
+     * Return string of option tag
+     *
+     * @param array $option
+     * @return string
+     */
+    private function option_tag (array $options , string $selected = ''): string {
+        $result = '';
+
+        foreach ($options as $k => $v) {
+            if ($selected == $v) {
+                $result .= "<option value='$k' selected>$v</option>";
+            } else {
+                $result .= "<option value='$k'>$v</option>";
+            }
+        }
+
+        return $result;
+    }
+
     public function textarea (string $name , string $title = '' , string $value = '' , string $placeholder = ''): object {
         // set label
-        $html = ($title) ? form_label ($title , $name) : null;
+//        todo: delete belove line
+//        $html = ($title) ? form_label ($title , $name) : null;
+        $html = ($title) ? "<label for='$name'>$title</label>" : null;
 
         // set margin for input text
         $class = ($title) ? 'w3-margin-bottom' : null;
 
         // set textarea
-        $html .= form_textarea ($name , $value , "id='$name' class='$class $this->inputStyle w3-$this->inputBgColor' placeholder='$placeholder' style='height: 110px; resize: vertical;'");
+        // todo: delete belowe code
+//        $html .= form_textarea ($name , $value , "id='$name' class='$class $this->inputStyle w3-$this->inputBgColor' placeholder='$placeholder' style='height: 110px; resize: vertical;'");
+        $html .= "<textarea id='$name' name='$name' class='$class $this->inputStyle w3-$this->inputBgColor' style='height: 110px; resize: vertical;' placeholder='$placeholder'>$value</textarea>";
 
         $this->form .= $this->row ($html , false , true);
 
@@ -363,8 +421,11 @@ class SimpleForm
      * @return string
      */
     public function hidden (string $name , string $value): object {
+//        /* ToDo: delete belowe code */
 //        $this->form .= form_hidden($name, $value);
-        $this->form .= "<input type='hidden' id='$name' name='$name' value='$value' />";
+        $html = "<input type='hidden' id='$name' name='$name' value='$value' />";
+
+        $this->form .= $this->row ($html);
 
         return $this;
     }
@@ -383,14 +444,34 @@ class SimpleForm
             $attr['class'] = $this->form_style ();
         }
 
-        $htmlForm = form_open ($action , $attr);
+        // todo: delete belowe line
+//        $htmlForm = form_open ($action , $attr);
+        $htmlForm = "<form action='$action' " . $this->prepare_attr ($attr) . ">";
         $htmlForm .= $this->form;
-        $htmlForm .= form_close ();
+        // todo: delete belowe code
+//        $htmlForm .= form_close ();
+        $htmlForm .= "</form>";
 
         // empty form property for next use
         $this->form = '';
 
         return $htmlForm;
+    }
+
+    /**
+     * Return a string of attribute(s)
+     *
+     * @param array $attr
+     * @return string
+     */
+    private function prepare_attr (array $attr): string {
+        $result = '';
+
+        foreach ($attr as $k => $v) {
+            $result .= "$k='$v' ";
+        }
+
+        return $result;
     }
 
     /**
