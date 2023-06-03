@@ -1,6 +1,14 @@
 <?php
 namespace SimpleForm;
 
+/* --------------------------------------------------------------------------------
+ * Note: In order for the elements of this
+ * class to be displayed with the desired
+ * style, your web page must use the w3.css
+ * framework
+ * --------------------------------------------------------------------------------
+ */
+
 class SimpleForm
 {
 
