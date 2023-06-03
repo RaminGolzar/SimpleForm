@@ -28,12 +28,23 @@ $form = $sf->Heading ('New Form')
         ->dropdown ('drop1' , 'Provinces: ' , $options , 'kabol')
         ->hidden ('hide1' , 2222)
         ->submit ($submits)
-        ->get ();
+        ->get_form ();
 
-echo $form;
+//echo $form;
+//
+//echo '<br/>----------------------------------------<br/>';
+//
+//echo '<p style="font-size: 25px;">'
+// . htmlentities ($form)
+// . '</p>';
+?>
 
-echo '<br/>----------------------------------------<br/>';
-
-echo '<p style="font-size: 25px;">'
- . htmlentities ($form)
- . '</p>';
+<html>
+    <head>
+        <title>Simple Form</title>
+        <link rel="stylesheet" href="./w3.css/w3.css"/>
+    </head>
+    <body>
+        <?= $form?>
+    </body>
+</html>

@@ -407,11 +407,14 @@ class SimpleForm
      * @param string $method
      * @return string
      */
-    public function get_form (bool $style = true , string $action = '' , array $attr = ['method' => 'post' ,]): string {
+    public function get_form (bool $style = true , string $action = '' , $method = 'post' , ?array $attr = null): string {
         // add style to form tag
         if ($style) {
             $attr['class'] = $this->form_style ();
         }
+
+        /* add method param to attr array */
+        $attr ['method'] = $method;
 
         $htmlForm = "<form action='$action' " . $this->prepare_attr ($attr) . ">";
 
