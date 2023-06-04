@@ -1,5 +1,7 @@
 <?php
 require_once './SimpleForm.php';
+require_once './SearchBox/SearchBox.php';
+;
 
 $sf = new SimpleForm\SimpleForm();
 
@@ -30,6 +32,10 @@ $form = $sf->Heading ('New Form')
         ->submit ($submits)
         ->get_form ();
 
+$sb = new SimpleForm\SearchBox\SearchBox();
+
+$searchBox = $sb->create_searchbox ();
+
 //echo $form;
 //
 //echo '<br/>----------------------------------------<br/>';
@@ -46,5 +52,7 @@ $form = $sf->Heading ('New Form')
     </head>
     <body>
         <?= $form?>
+
+<?= $searchBox?>
     </body>
 </html>

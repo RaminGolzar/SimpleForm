@@ -1,11 +1,25 @@
 <?php
 namespace SimpleForm\SearchBox;
 
+/* Submit.php trait */
+require_once __DIR__
+        . DIRECTORY_SEPARATOR
+        . 'Handelers'
+        . DIRECTORY_SEPARATOR
+        . 'Submit.php';
+
+/* text.php trait */
+require_once __DIR__
+        . DIRECTORY_SEPARATOR
+        . 'Handelers'
+        . DIRECTORY_SEPARATOR
+        . 'Text.php';
+
 class SearchBox
 {
 
-    use Handlers\Text;
-    use Handlers\Submit;
+    use Handelers\Text;
+    use Handelers\Submit;
 
     /**
      * Submit align <p>valid value is: left | right</p>
