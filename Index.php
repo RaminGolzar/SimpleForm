@@ -1,10 +1,15 @@
 <?php
 require_once './SimpleForm.php';
 require_once './SearchBox/SearchBox.php';
-;
+
+/* ----------------------------------------------------------------------
+ * SimpleForm
+ * ----------------------------------------------------------------------
+ */
 
 $sf = new SimpleForm\SimpleForm();
 
+/* these options for dropdown method */
 $options = [
     'Tehran' ,
     'Pecan' ,
@@ -12,9 +17,10 @@ $options = [
     'kabol' ,
 ];
 
+/* this array for submit method */
 $submits = [
-    'subSave red' => 'Save' ,
-    'http://www.faradars.org red' => 'FaraDars' ,
+    'subSave green' => 'Save' ,
+    'http://www.google.com red' => 'Google' ,
 ];
 
 $form = $sf->Heading ('New Form')
@@ -32,17 +38,14 @@ $form = $sf->Heading ('New Form')
         ->submit ($submits)
         ->get_form ();
 
+/* ----------------------------------------------------------------------
+ * SearchBox
+ * ----------------------------------------------------------------------
+ */
+
 $sb = new SimpleForm\SearchBox\SearchBox();
 
 $searchBox = $sb->create_searchbox ();
-
-//echo $form;
-//
-//echo '<br/>----------------------------------------<br/>';
-//
-//echo '<p style="font-size: 25px;">'
-// . htmlentities ($form)
-// . '</p>';
 ?>
 
 <html>
@@ -53,6 +56,6 @@ $searchBox = $sb->create_searchbox ();
     <body>
         <?= $form?>
 
-<?= $searchBox?>
+        <?= $searchBox?>
     </body>
 </html>
